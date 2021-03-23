@@ -1,8 +1,9 @@
 package com.intelliarts.JavaTraineeTestProgram.service;
 
 import com.intelliarts.JavaTraineeTestProgram.model.Order;
-import org.springframework.data.domain.Sort;
+import com.tunyk.currencyconverter.api.CurrencyConverterException;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,8 @@ public interface OrderService {
 
     List<Order> findByDate(Date date);
 
-    List<Order> deleteByDate(Order order);
+    void deleteByDate(Order order);
 
-    List<Order> getAndSortOrderByDate(Sort sort, Date date);
+    BigDecimal getTotal() throws CurrencyConverterException;
+
 }

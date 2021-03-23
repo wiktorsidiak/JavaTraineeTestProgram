@@ -20,24 +20,5 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/expences")
-    public String saveOrder(Order order) {
-        Order savedOrder = orderRepository.saveOder(order);
 
-        return "redirect:expenses";
     }
-
-    @GetMapping("/expenses")
-    public String getAndSortByDate(@RequestParam Sort sort) {
-        orderRepository.getAndSortOrderByDate(sort);
-        return "getAndSortByDate";
-    }
-
-    @DeleteMapping("/expences?date={date}")
-    public String deleteOrder(@PathVariable Date date) {
-        Order thisOrder = orderRepository.findByDate(date);
-        orderRepository.deleteByDate(thisOrder);
-
-        return "expences";
-    }
-}
