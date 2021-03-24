@@ -1,9 +1,10 @@
 package com.intelliarts.JavaTraineeTestProgram.repository;
 
-import com.intelliarts.JavaTraineeTestProgram.model.Order;
+import com.intelliarts.JavaTraineeTestProgram.model.Expense;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 }
