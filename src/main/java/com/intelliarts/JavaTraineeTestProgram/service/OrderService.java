@@ -10,9 +10,9 @@ import java.util.List;
 public interface OrderService {
     Order saveOrder(Order order);
 
-    List<Order> findByDate(Date date);
+    List<Order> findAll(Date date);
 
-    void deleteByDate(Order order);
+    void deleteByDate(Date date);
 
     BigDecimal getTotal() throws CurrencyConverterException;
 

@@ -6,8 +6,6 @@ import com.tunyk.currencyconverter.api.CurrencyConverter;
 import com.tunyk.currencyconverter.api.CurrencyConverterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -15,30 +13,24 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements  OrderService {
     @Autowired
-    OrderRepository orderRepository;
+    private OrderRepository orderRepository;
     @Autowired
-    Order order;
+    private Order order;
     @Autowired
-    CurrencyConverter currencyConverter;
-    @Autowired
-    EntityManager entityManager;
+    private CurrencyConverter currencyConverter;
 
     @Override
     public Order saveOrder(Order order) {
-        return orderRepository.save(order);
+        return orderRepository.saveAndFlush(order);
     }
 
     @Override
-    public List<Order> findByDate(Date date) {
-        return orderRepository.findAllByDate(date);
+    public List<Order> findAll(Date date) {
+        return orderRepository.findAll();
     }
 
     @Override
-    public void deleteByDate(Order order) {
-        entityManager.persist(order);
-        entityManager.createNativeQuery("delete from Order where date = :date")
-                .setParameter("date", order.getDate())
-                .executeUpdate();
+    public void deleteByDate(Date date) {
         orderRepository.delete(order);
     }
 
