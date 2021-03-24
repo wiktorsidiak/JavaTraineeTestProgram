@@ -4,6 +4,7 @@ import com.intelliarts.JavaTraineeTestProgram.model.Order;
 import com.intelliarts.JavaTraineeTestProgram.repository.OrderRepository;
 import com.intelliarts.JavaTraineeTestProgram.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -13,11 +14,8 @@ import java.util.List;
 @RequestMapping("/expenses")
 public class OrderController {
 
-    private Order order;
     @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private OrderService orderService;
+    OrderService orderService;
 
     @PostMapping
     public Order saveOrder(@RequestBody Order order){

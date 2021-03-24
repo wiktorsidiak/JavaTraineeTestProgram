@@ -7,13 +7,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "order")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Order {
 
     @Id

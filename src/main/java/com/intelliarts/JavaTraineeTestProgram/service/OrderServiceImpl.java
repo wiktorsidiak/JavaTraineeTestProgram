@@ -13,11 +13,10 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements  OrderService {
     @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private Order order;
-    @Autowired
-    private CurrencyConverter currencyConverter;
+    OrderRepository orderRepository;
+    Order order;
+ //   @Autowired
+//   private CurrencyConverter currencyConverter;
 
     @Override
     public Order saveOrder(Order order) {
@@ -28,15 +27,14 @@ public class OrderServiceImpl implements  OrderService {
     public List<Order> findAll(Date date) {
         return orderRepository.findAll();
     }
-
     @Override
     public void deleteByDate(Date date) {
         orderRepository.delete(order);
     }
 
-    @Override
-    public BigDecimal getTotal() throws CurrencyConverterException {
-        currencyConverter.convertCurrency(order.getAmount(), order.getCurrency(), order.setCurrency());
-        return null;
-    }
+//    @Override
+//    public BigDecimal getTotal() throws CurrencyConverterException {
+//        currencyConverter.convertCurrency(order.getAmount(), order.getCurrency(), order.setCurrency());
+//        return null;
+//    }
 }

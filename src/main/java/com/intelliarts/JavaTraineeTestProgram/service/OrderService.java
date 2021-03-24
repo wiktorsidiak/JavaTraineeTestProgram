@@ -14,6 +14,6 @@ public interface OrderService {
 
     void deleteByDate(Date date);
 
-    BigDecimal getTotal() throws CurrencyConverterException;
+ //   BigDecimal getTotal() throws CurrencyConverterException;
 
 }
