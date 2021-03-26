@@ -2,33 +2,35 @@ package com.intelliarts.JavaTraineeTestProgram.controller;
 
 import com.intelliarts.JavaTraineeTestProgram.model.Expense;
 import com.intelliarts.JavaTraineeTestProgram.service.ExpenseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
 @RequestMapping("/expenses")
+@RequiredArgsConstructor
 public class ExpenseController {
 
-    @PostMapping(value = "expenses/save")
+    private final ExpenseService expenseService;
+
+    @PostMapping(value = "/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Expense saveExpense(@RequestBody Expense expense){
-        return expenseService.save(expense);
-
+            return expenseService.save(expense);
     }
 
-    @Autowired
-    ExpenseService expenseService;
-
-    @GetMapping(value = "expenses/{date}")
-    @ResponseBody
-    public List<Expense> getOrdersByDate(@PathVariable Date date){
-        return expenseService.findAll(date);
+    @GetMapping(value = "/{date}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Expense> getOrdersByDate(@PathVariable Timestamp date){
+        return expenseService.findByDate(date);
     }
-    @DeleteMapping(value = "expenses?{date}")
-    public void deleteExpence(@PathVariable Date date){
-        expenseService.delete(date);
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteExpense(@RequestParam Timestamp date){
+        expenseService.deleteByDate(date);
     }
 
 }

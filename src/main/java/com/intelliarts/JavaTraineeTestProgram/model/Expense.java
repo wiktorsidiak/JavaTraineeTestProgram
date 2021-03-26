@@ -8,12 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "expense")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 public class Expense {
 
     @Id
